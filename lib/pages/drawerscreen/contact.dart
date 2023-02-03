@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Calls extends StatelessWidget {
-  const Calls({super.key});
+class Contact extends StatelessWidget {
+  const Contact({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Calls'),
+        backgroundColor: const Color.fromARGB(184, 133, 60, 145),
         actions: [
           IconButton(
               onPressed: () {}, icon: const Icon(Icons.more_vert_outlined))
@@ -15,13 +15,13 @@ class Calls extends StatelessWidget {
       ),
       body: const Center(
           child: Text(
-        'calllllllllllllllllllllinggggggggggggggg',
+        'new group',
       )),
       floatingActionButton: FloatingActionButton(
           backgroundColor: const Color.fromARGB(255, 157, 89, 176),
           onPressed: () {},
           child: const Icon(
-            Icons.call,
+            Icons.person_add_alt,
             color: Colors.white,
           )),
     );

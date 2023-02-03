@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class FavoriteChatModel {
   final String name;
   final String message;
@@ -108,3 +110,94 @@ final List<FavoriteChatModel> favoriteitems = [
       // pinstatus:false,
       messNum: 4),
 ];
+
+class Favoritechatlist extends StatefulWidget {
+  const Favoritechatlist({super.key});
+
+  @override
+  State<Favoritechatlist> createState() => FavoritechatlistState();
+}
+
+class FavoritechatlistState extends State<Favoritechatlist> {
+  @override
+  Widget build(BuildContext context) {
+    return FractionallySizedBox(
+      widthFactor: 1.0, // between 0 and 1
+      heightFactor: 1.0,
+      //  padding: const EdgeInsets.only(top: 10),
+      child: ListView.separated(
+          itemBuilder: (ctx, i) {
+            return SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: ListTile(
+                  contentPadding: const EdgeInsets.only(left: 10, right: 12),
+                  leading: CircleAvatar(
+                    radius: 28,
+                    backgroundImage: AssetImage(favoriteitems[i].imgPath),
+                  ),
+                  title: favoriteitems[i].status
+                      ? Text(
+                          favoriteitems[i].name,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        )
+                      : Row(
+                          children: [
+                            Text(
+                              favoriteitems[i].name,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Icon(
+                              Icons.volume_mute,
+                              size: 18,
+                              color: Colors.grey[400],
+                            )
+                          ],
+                        ),
+                  subtitle: Text(
+                    favoriteitems[i].message,
+                    style: const TextStyle(color: Colors.grey),
+                  ),
+                  // ignore: unnecessary_null_comparison
+                  trailing: favoriteitems[i].messNum != null
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(favoriteitems[i].time),
+                            const SizedBox(
+                                // height: 7,
+                                ),
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: favoriteitems[i].status
+                                      ? const Color.fromARGB(184, 133, 60, 145)
+                                      : Colors.grey[400],
+                                  borderRadius: BorderRadius.circular(30)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  '${favoriteitems[i].messNum}',
+                                  style: const TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            )
+                          ],
+                        )
+                      : Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(favoriteitems[i].time),
+                            const SizedBox(
+                              height: 7,
+                            ),
+                          ],
+                        )),
+            );
+          },
+          separatorBuilder: (ctx, i) {
+            return const Divider();
+          },
+          itemCount: favoriteitems.length),
+    );
+  }
+}

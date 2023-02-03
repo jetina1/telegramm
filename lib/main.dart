@@ -12,7 +12,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      color: const Color.fromARGB(184, 133, 60, 145),
       debugShowCheckedModeBanner: false,
       title: 'Telegram',
       theme: ThemeData(
