@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class Calls extends StatelessWidget {
   const Calls({super.key});
@@ -14,10 +15,11 @@ class Calls extends StatelessWidget {
               onPressed: () {}, icon: const Icon(Icons.more_vert_outlined))
         ],
       ),
-      body: const Center(
-          child: Text(
-        'calllllllllllllllllllllinggggggggggggggg',
-      )),
+      body: Center(
+        child: Lottie.network(
+            'https://assets2.lottiefiles.com/packages/lf20_steDjh.json',
+            animate: true),
+      ),
       floatingActionButton: FloatingActionButton(
           backgroundColor: const Color.fromARGB(255, 157, 89, 176),
           onPressed: () {},

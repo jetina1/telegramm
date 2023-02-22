@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../screens/personalchatsdetail/chatdetail.dart';
+import 'chatdetail.dart';
 
-class ChatModel {
+class FavoriteChatModel {
   final String name;
   final String message;
   final String time;
@@ -11,7 +11,7 @@ class ChatModel {
   // final bool pinstatus;
   final int messNum;
 
-  ChatModel({
+  FavoriteChatModel({
     required this.name,
     required this.message,
     required this.time,
@@ -22,105 +22,113 @@ class ChatModel {
   });
 }
 
-final List<ChatModel> personalitems = [
-  ChatModel(
-      name: 'beti n',
+final List<FavoriteChatModel> favoriteitems = [
+  FavoriteChatModel(
+      name: 'maki',
       message: 'snt seat lay',
       time: '10:39',
-      imgPath: 'images/benu.jpg',
-      status: true,
+      imgPath: 'assets/images/sw.jpg',
+      status: false,
       //pinstatus:true,
       messNum: 1),
-  ChatModel(
+  FavoriteChatModel(
+      name: 'saved',
+      message: 'snt seat lay',
+      time: '10:39',
+      imgPath: 'assets/images/tt.jpg',
+      status: false,
+      //pinstatus:true,
+      messNum: 1),
+  FavoriteChatModel(
       name: 'betty',
       message: 'snt seat lay',
       time: '10:39',
-      imgPath: 'images/tt.jpg',
+      imgPath: 'assets/images/cc.jpg',
       status: true,
       //pinstatus:false,
-      messNum: 2),
-  ChatModel(
+      messNum: 0),
+  FavoriteChatModel(
       name: 'jerry',
       message: 'love u bebe',
       time: '10:39',
-      imgPath: 'images/cc.jpg',
+      imgPath: 'assets/images/cc.jpg',
       status: true,
       //pinstatus:false,
-      messNum: 1),
-  ChatModel(
+      messNum: 0),
+  FavoriteChatModel(
       name: 'jerry twins ',
       message: 'anchi chigogit',
       time: 'Feb 12',
-      imgPath: 'images/rem.jpg',
+      imgPath: 'assets/images/rem.jpg',
       status: false,
       //pinstatus:false,
       messNum: 1),
-  ChatModel(
+  FavoriteChatModel(
       name: 'bety twins',
       message: 'anchi arogit',
       time: '12:12',
-      imgPath: 'images/ttt.jpg',
+      imgPath: 'assets/images/ttt.jpg',
       status: false,
       //pinstatus:false,
-      messNum: 20),
-  ChatModel(
+      messNum: 0),
+  FavoriteChatModel(
       name: 'betty class',
       message: 'mech nw mihonew',
       time: '6:11',
-      imgPath: 'images/h.jpg',
+      imgPath: 'assets/images/h.jpg',
       status: true,
       // pinstatus:false,
-      messNum: 5),
-  ChatModel(
+      messNum: 0),
+  FavoriteChatModel(
       name: 'hanniyam ',
       message: 'bezii samnt',
       time: 'Jan 1',
-      imgPath: 'images/background.jpg',
+      imgPath: 'assets/images/background.jpg',
       status: true,
       // pinstatus:false,
-      messNum: 5),
-  ChatModel(
+      messNum: 0),
+  FavoriteChatModel(
       name: 'Heven',
       message: 'yhuna',
       time: '4:00',
-      imgPath: 'images/bff.jpg',
+      imgPath: 'assets/images/bff.jpg',
       status: true,
       // pinstatus:false,
       messNum: 4),
-  ChatModel(
+  FavoriteChatModel(
       name: 'Amar',
       message: 'ut sunt sequi',
       time: 'Dec 10',
-      imgPath: 'images/je.jpg',
+      imgPath: 'assets/images/sw.jpg',
       status: false,
       //pinstatus:false,
       messNum: 2),
-  ChatModel(
+  FavoriteChatModel(
       name: 'Crstina',
       message: 'duzzzzzzzzzzzzzzzzzzzzzzzzzzz',
       time: '4:30',
-      imgPath: 'images/bety.jpg',
+      imgPath: 'assets/images/bety.jpg',
       status: false,
       // pinstatus:false,
-      messNum: 6),
-  ChatModel(
+      messNum: 1),
+  FavoriteChatModel(
       name: 'Devid',
       message: 'et laborum mollitia',
       time: '6:00',
-      imgPath: 'images/je.jpg',
+      imgPath: 'assets/images/benu.jpg',
       status: true,
       // pinstatus:false,
       messNum: 4),
 ];
 
-class Personalchatlist extends StatefulWidget {
-  const Personalchatlist({super.key});
+class Favoritechatlist extends StatefulWidget {
+  const Favoritechatlist({super.key});
 
   @override
-  State<Personalchatlist> createState() => PersonalchatlistState();
+  State<Favoritechatlist> createState() => FavoritechatlistState();
 }
 
-class PersonalchatlistState extends State<Personalchatlist> {
+class FavoritechatlistState extends State<Favoritechatlist> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -129,11 +137,10 @@ class PersonalchatlistState extends State<Personalchatlist> {
           builder: (context) => const ChatDetail(),
         ));
       },
-      //onLongPress: () => {},
       child: FractionallySizedBox(
         widthFactor: 1.0, // between 0 and 1
         heightFactor: 1.0,
-        //padding: const EdgeInsets.only(top: 10),
+        //  padding: const EdgeInsets.only(top: 10),
         child: ListView.separated(
             itemBuilder: (ctx, i) {
               return SizedBox(
@@ -142,17 +149,17 @@ class PersonalchatlistState extends State<Personalchatlist> {
                     contentPadding: const EdgeInsets.only(left: 10, right: 12),
                     leading: CircleAvatar(
                       radius: 28,
-                      backgroundImage: AssetImage(personalitems[i].imgPath),
+                      backgroundImage: AssetImage(favoriteitems[i].imgPath),
                     ),
-                    title: personalitems[i].status
+                    title: favoriteitems[i].status
                         ? Text(
-                            personalitems[i].name,
+                            favoriteitems[i].name,
                             style: const TextStyle(fontWeight: FontWeight.bold),
                           )
                         : Row(
                             children: [
                               Text(
-                                personalitems[i].name,
+                                favoriteitems[i].name,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold),
                               ),
@@ -164,30 +171,31 @@ class PersonalchatlistState extends State<Personalchatlist> {
                             ],
                           ),
                     subtitle: Text(
-                      personalitems[i].message,
+                      favoriteitems[i].message,
                       style: const TextStyle(color: Colors.grey),
                     ),
-                    // ignore: unnecessary_null_comparison
-                    trailing: personalitems[i].messNum != null
+                    trailing: favoriteitems[i].messNum != 0
                         ? Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Text(personalitems[i].time),
+                              Text(favoriteitems[i].time),
                               const SizedBox(
-                                  //height: 7,
-                                  //width: 40,
+                                  // height: 7,
                                   ),
                               Container(
+                                height: 25,
+                                width: 25,
                                 decoration: BoxDecoration(
-                                    color: personalitems[i].status
+                                    color: favoriteitems[i].status
                                         ? const Color.fromARGB(
                                             184, 133, 60, 145)
                                         : Colors.grey[400],
                                     borderRadius: BorderRadius.circular(30)),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding:
+                                      const EdgeInsets.only(left: 8.0, top: 2),
                                   child: Text(
-                                    '${personalitems[i].messNum}',
+                                    '${favoriteitems[i].messNum}',
                                     style: const TextStyle(color: Colors.white),
                                   ),
                                 ),
@@ -197,7 +205,7 @@ class PersonalchatlistState extends State<Personalchatlist> {
                         : Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Text(personalitems[i].time),
+                              Text(favoriteitems[i].time),
                               const SizedBox(
                                 height: 7,
                               ),
@@ -208,7 +216,7 @@ class PersonalchatlistState extends State<Personalchatlist> {
             separatorBuilder: (ctx, i) {
               return const Divider();
             },
-            itemCount: personalitems.length),
+            itemCount: favoriteitems.length),
       ),
     );
   }

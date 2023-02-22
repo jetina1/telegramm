@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "301125064315",
-    "project_id": "telegram-a15dd",
-    "storage_bucket": "telegram-a15dd.appspot.com"
+    "project_number": "906535121954",
+    "project_id": "jtelegram-cb0a9",
+    "storage_bucket": "jtelegram-cb0a9.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:301125064315:android:be68a09f37477fd6f934de",
+        "mobilesdk_app_id": "1:906535121954:android:aea1a0831169df3a5f067b",
         "android_client_info": {
           "package_name": "com.example.telegramm"
         }
       },
       "oauth_client": [
         {
-          "client_id": "301125064315-1rpdppuk12g4tl33jtgm8ig1nd1j8o1k.apps.googleusercontent.com",
+          "client_id": "906535121954-o8qa936g6r7536j019l9716gcbdbcriv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBt2Mx0olzwewad5rOg8Y3eRLK-Qg5qfA4"
+          "current_key": "AIzaSyA1ai01SfWdm1A-yN-Iv0LmKkrXUvT-Zew"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "301125064315-1rpdppuk12g4tl33jtgm8ig1nd1j8o1k.apps.googleusercontent.com",
+              "client_id": "906535121954-o8qa936g6r7536j019l9716gcbdbcriv.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

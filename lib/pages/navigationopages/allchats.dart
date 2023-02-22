@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+
+import 'chatdetail.dart';
 
 class AllChatModel {
   final String name;
@@ -25,31 +28,31 @@ final List<AllChatModel> allitems = [
       name: 'HaHuJobs',
       message: 'snt seat lay',
       time: '10:39',
-      imgPath: 'images/hahu.jpg',
+      imgPath: 'assets/images/hahu.jpg',
       status: false,
       //pinstatus:true,
-      messNum: 1),
+      messNum: 0),
   AllChatModel(
       name: 'saved',
       message: 'snt seat lay',
       time: '10:39',
-      imgPath: 'images/tt.jpg',
+      imgPath: 'assets/images/tt.jpg',
       status: false,
       //pinstatus:true,
-      messNum: 1),
+      messNum: 0),
   AllChatModel(
       name: 'Awaqi',
-      message: 'snt seat lay',
+      message: 'search for the detail',
       time: '10:39',
-      imgPath: 'images/awaki.jpg',
+      imgPath: 'assets/images/awaki.jpg',
       status: false,
       //pinstatus:true,
       messNum: 1),
   AllChatModel(
       name: 'betty',
-      message: 'snt seat lay',
+      message: 'ngerign',
       time: '10:39',
-      imgPath: 'images/tt.jpg',
+      imgPath: 'assets/images/tt.jpg',
       status: true,
       //pinstatus:false,
       messNum: 2),
@@ -58,7 +61,7 @@ final List<AllChatModel> allitems = [
       message:
           'https://www.reddit.com/r/FlutterDev/comments/10mov8m/why_to_use_different_backend_language/',
       time: '10:39',
-      imgPath: 'images/flutter.jpg',
+      imgPath: 'assets/images/flutter.jpg',
       status: true,
       //pinstatus:false,
       messNum: 2),
@@ -66,7 +69,7 @@ final List<AllChatModel> allitems = [
       name: 'jerry',
       message: 'love u bebe',
       time: '10:39',
-      imgPath: 'images/cc.jpg',
+      imgPath: 'assets/images/cc.jpg',
       status: true,
       //pinstatus:false,
       messNum: 1),
@@ -74,7 +77,7 @@ final List<AllChatModel> allitems = [
       name: 'jerry twins ',
       message: 'anchi chigogit',
       time: 'Feb 12',
-      imgPath: 'images/rem.jpg',
+      imgPath: 'assets/images/rem.jpg',
       status: false,
       //pinstatus:false,
       messNum: 1),
@@ -82,7 +85,7 @@ final List<AllChatModel> allitems = [
       name: 'bety twins',
       message: 'anchi arogit',
       time: '12:12',
-      imgPath: 'images/ttt.jpg',
+      imgPath: 'assets/images/ttt.jpg',
       status: false,
       //pinstatus:false,
       messNum: 20),
@@ -90,7 +93,7 @@ final List<AllChatModel> allitems = [
       name: 'betty class',
       message: 'mech nw mihonew',
       time: '6:11',
-      imgPath: 'images/h.jpg',
+      imgPath: 'assets/images/h.jpg',
       status: true,
       // pinstatus:false,
       messNum: 5),
@@ -98,7 +101,7 @@ final List<AllChatModel> allitems = [
       name: 'hanniyam ',
       message: 'bezii samnt',
       time: 'Jan 1',
-      imgPath: 'images/background.jpg',
+      imgPath: 'assets/images/background.jpg',
       status: true,
       // pinstatus:false,
       messNum: 5),
@@ -106,7 +109,7 @@ final List<AllChatModel> allitems = [
       name: 'Heven',
       message: 'yhuna',
       time: '4:00',
-      imgPath: 'images/bff.jpg',
+      imgPath: 'assets/images/bff.jpg',
       status: true,
       // pinstatus:false,
       messNum: 4),
@@ -114,7 +117,7 @@ final List<AllChatModel> allitems = [
       name: 'Amar',
       message: 'ut sunt sequi',
       time: 'Dec 10',
-      imgPath: 'images/je.jpg',
+      imgPath: 'assets/images/pc.jpg',
       status: false,
       //pinstatus:false,
       messNum: 2),
@@ -122,7 +125,7 @@ final List<AllChatModel> allitems = [
       name: 'Crstina',
       message: 'duzzzzzzzzzzzzzzzzzzzzzzzzzzz',
       time: '4:30',
-      imgPath: 'images/bety.jpg',
+      imgPath: 'assets/images/bety.jpg',
       status: false,
       // pinstatus:false,
       messNum: 6),
@@ -130,7 +133,7 @@ final List<AllChatModel> allitems = [
       name: 'Devid',
       message: 'et laborum mollitia',
       time: '6:00',
-      imgPath: 'images/je.jpg',
+      imgPath: 'assets/images/sw.jpg',
       status: true,
       // pinstatus:false,
       messNum: 4),
@@ -146,12 +149,20 @@ class Allchatlist extends StatefulWidget {
 class AllchatlistState extends State<Allchatlist> {
   @override
   Widget build(BuildContext context) {
-    return FractionallySizedBox(
-      widthFactor: 1.0, // between 0 and 1
-      heightFactor: 1.0,
-      child:
-          //padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
-          ListView.separated(
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            PageTransition(
+                duration: const Duration(
+                  seconds: 1,
+                ),
+                type: PageTransitionType.fade,
+                child: const ChatDetail()));
+      },
+      onLongPress: () {},
+      onHorizontalDragStart: ((details) => {}),
+      child: ListView.separated(
         itemCount: allitems.length,
         itemBuilder: (ctx, i) {
           return SizedBox(
@@ -184,23 +195,24 @@ class AllchatlistState extends State<Allchatlist> {
                   allitems[i].message,
                   style: const TextStyle(color: Colors.grey),
                 ),
-                // ignore: unnecessary_null_comparison
-                trailing: allitems[i].messNum != null
+                trailing: allitems[i].messNum != 0
                     ? Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(allitems[i].time),
-                          const SizedBox(
-                              // height: 7,
-                              ),
+                          // const SizedBox(
+                          //     // height: 7,
+                          //     ),
                           Container(
+                            height: 25,
+                            width: 25,
                             decoration: BoxDecoration(
                                 color: allitems[i].status
                                     ? const Color.fromARGB(184, 133, 60, 145)
                                     : Colors.grey[400],
                                 borderRadius: BorderRadius.circular(30)),
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.only(left: 8.0, top: 2),
                               child: Text(
                                 '${allitems[i].messNum}',
                                 style: const TextStyle(color: Colors.white),
@@ -215,7 +227,7 @@ class AllchatlistState extends State<Allchatlist> {
                           Text(allitems[i].time),
                           const SizedBox(
                             height: 7,
-                            width: 15,
+                            width: 10,
                           ),
                         ],
                       )),

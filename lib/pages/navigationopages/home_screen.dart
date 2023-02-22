@@ -1,26 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:telegramm/pages/mainpage/allchats.dart';
-import 'package:telegramm/pages/mainpage/favoritechat.dart';
-import 'package:telegramm/pages/mainpage/personalchat.dart';
-//import 'package:telegramm/pages/drawerpages/calls.dart';
-//import 'package:telegramm/pages/drawerpages/contact.dart';
-//import 'package:telegramm/pages/drawerpages/invitefriend.dart';
-//import 'package:telegramm/pages/drawerpages/newgroup.dart';
-//import 'package:telegramm/pages/drawerpages/peoplenearby.dart';
-//import 'package:telegramm/pages/drawerpages/savedmessage.dart';
-//import 'package:telegramm/pages/drawerpages/settings.dart';
-//import 'package:telegramm/pages/drawerpages/telegramfeatures.dart';
-
-import '../../pages/drawerscreen/calls.dart';
-import '../../pages/drawerscreen/contact.dart';
-import '../../pages/drawerscreen/invitefriend.dart';
-import '../../pages/drawerscreen/newgroup.dart';
-import '../../pages/drawerscreen/peoplenearby.dart';
-import '../../pages/drawerscreen/savedmessage.dart';
-import '../../pages/drawerscreen/settings.dart';
-import '../../pages/drawerscreen/telegramfeatures.dart';
-
-//import '../../pages/search_page.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:telegramm/pages/navigationopages/allchats.dart';
+import 'package:telegramm/pages/navigationopages/favoritechat.dart';
+import 'package:telegramm/pages/navigationopages/personalchat.dart';
+import '../drawerscreen/calls.dart';
+import '../drawerscreen/contact.dart';
+import '../drawerscreen/invitefriend.dart';
+import '../drawerscreen/newgroup.dart';
+import '../drawerscreen/peoplenearby.dart';
+import '../drawerscreen/savedmessage.dart';
+import '../drawerscreen/settings.dart';
+import '../drawerscreen/telegramfeatures.dart';
+import 'darkhomescreen.dart';
+import 'package:telegramm/pages/navigationopages/search_page.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -29,8 +21,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  //final List<String> entry = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
-  //var _icon = Icons.brightness_2;
   @override
   Widget build(BuildContext context) => DefaultTabController(
         length: 3,
@@ -43,11 +33,12 @@ class HomeScreenState extends State<HomeScreen> {
                 Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: GestureDetector(
-                    /* onTap: () =>  Navigator.push(context, MaterialPageRoute(
-                            // ignore: prefer_const_constructors
-                            builder:SearchPage())),*/
                     child: IconButton(
-                        icon: const Icon(Icons.search), onPressed: () {}),
+                        icon: const Icon(Icons.search),
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const SearchPage()));
+                        }),
                   ),
                 )
                 //
@@ -76,61 +67,60 @@ class HomeScreenState extends State<HomeScreen> {
               child: ListView(
                 children: [
                   UserAccountsDrawerHeader(
-                      accountName: const Text('Jerusalem tina'),
-                      accountEmail: const Text('0920128232'),
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage("images/background.jpg"),
-                            fit: BoxFit.fill),
+                    accountName: const Text('Jerusalem tina'),
+                    accountEmail: const Text('0920128232'),
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("assets/images/cc.jpg"),
+                          fit: BoxFit.cover),
+                    ),
+                    currentAccountPicture: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            PageTransition(
+                                duration: const Duration(
+                                  seconds: 1,
+                                ),
+                                type: PageTransitionType.topToBottom,
+                                child: const Settings()));
+                      },
+                      child: const CircleAvatar(
+                        backgroundImage: AssetImage('assets/images/tt.jpg'),
                       ),
-                      currentAccountPicture: const CircleAvatar(
-                        backgroundImage: AssetImage('images/je.jpg'),
-                      ),
-                      //otherAccountsPictures: const [],
-                      //arrowColor: Colors.white,
-                      // onDetailsPressed: () {},
-                      otherAccountsPictures: [
-                        IconButton(
-                          icon: const Icon(
-                            Icons.brightness_2,
-                            color: Colors.white,
-                            size: 25,
-                          ),
-                          onPressed: () {},
+                    ),
+                    otherAccountsPictures: [
+                      IconButton(
+                        icon: const Icon(
+                          Icons.brightness_2,
+                          color: Colors.white,
+                          size: 25,
                         ),
-                      ]),
-
-                  /*otherAccountsPictures: [
-              IconButton(
-                icon: Icon(Icons.brightness_2
-                  color: Colors.white,
-                  size: 25,
-                ),
-                onPressed: () {
-        
-                  if (_icon == Icons.brightness_2) {
-                    _icon = Icons.wb_sunny,
-                    Navigator.push(context,MaterialPageRoute(builder: (context) => HomeScreenDark()),);
-        
-        
-                  } else {
-                    _icon = Icons.brightness_2;
-        
-                  }
-        
-                },
-              */
-
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const DarkHomeScreen()));
+                        },
+                      ),
+                    ],
+                    arrowColor: Colors.white,
+                    onDetailsPressed: () {},
+                  ),
                   Column(
                     children: [
                       ListTile(
-                          leading: const Icon(Icons.people),
-                          title: const Text('New Group'),
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const NewGroup(),
-                            ));
-                          }),
+                        leading: const Icon(Icons.people),
+                        title: const Text('New Group'),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  duration: const Duration(
+                                    seconds: 2,
+                                  ),
+                                  type: PageTransitionType.fade,
+                                  child: const NewGroup()));
+                        },
+                      ),
                       ListTile(
                           leading: const Icon(Icons.person),
                           title: const Text('contact'),
@@ -152,7 +142,7 @@ class HomeScreenState extends State<HomeScreen> {
                           title: const Text('people nearby'),
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const PeopleNearby(),
+                              builder: (context) => PeopleNearby(),
                             ));
                           }),
                       ListTile(
@@ -208,11 +198,11 @@ class HomeScreenState extends State<HomeScreen> {
             ])),
       );
 
-  Widget buildPage(String text, ListTile x) => Column(children: [
-        Text(
-          text,
-          style: const TextStyle(fontSize: 20),
-        ),
-        x,
-      ]);
+//   Widget buildPage(String text, ListTile x) => Column(children: [
+//         Text(
+//           text,
+//           style: const TextStyle(fontSize: 20),
+//         ),
+//         x,
+//       ]);
 }
